@@ -1,11 +1,8 @@
 /**
- * @type {import('@remix-run/dev/config').AppConfig}
+ * @type {import('@remix-run/dev').AppConfig}
  */
 module.exports = {
-  appDirectory: "app",
-  assetsBuildDirectory: "public/build",
-  publicPath: "/build/",
-  serverBuildDirectory: "netlify/functions/server/build",
-  devServerPort: 8002,
-  ignoredRouteFiles: [".*"]
-};
+  serverBuildTarget: "vercel",
+  server: process.env.NODE_ENV === "development" ? undefined : "./server.js",
+  ignoredRouteFiles: ["**/.*"],
+}

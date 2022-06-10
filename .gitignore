@@ -1,6 +1,11 @@
 node_modules
-/.cache
-/netlify/functions/server/build
-/public/build
-/.netlify
 .DS_Store
+.cache
+.env
+.vercel
+.output
+
+/build/
+/public/build
+/api/index.js
+/api/index.js.map

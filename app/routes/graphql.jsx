@@ -1,7 +1,6 @@
-import { useLoaderData, json } from "remix"
-import { GraphQLClient, gql } from "graphql-request"
+import { useLoaderData } from "@remix-run/react"
 
-const GET_CHARACTERS = gql`{
+const GET_CHARACTERS = `{
   characters {
     results {
       name
@@ -11,19 +10,26 @@ const GET_CHARACTERS = gql`{
 }`
 
 export let loader = async () => {
-  const client = new GraphQLClient("https://rickandmortyapi.com/graphql")
-  const { characters } = await client.request(GET_CHARACTERS)
-  const { results } = characters
-  return json({ results })
+  const res = await fetch(
+    'https://rickandmortyapi.com/graphql', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: GET_CHARACTERS
+      })
+    }
+  )
+  const characters = await res.json()
+  return characters
 }
 
 export default function Index() {
-  let data = useLoaderData()
+  let { data } = useLoaderData()
 
   return (
     <>
       <ul>
-        {data.results.map(({ name, id }) => (
+        {data.characters.results.map(({ name, id }) => (
           <li key={id}>
             {name}
           </li>
