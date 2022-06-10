@@ -1,4 +1,4 @@
-# Example Project from [A First Look at Remix]()
+# Example Project from [A First Look at Remix](https://dev.to/ajcwebdev/a-first-look-at-remix-2cp1)
 
 ## Deployment
 
